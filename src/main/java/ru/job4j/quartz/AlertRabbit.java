@@ -12,7 +12,6 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
     static int rabbitInterval;
-
     public static void main(String[] args) {
         try {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
