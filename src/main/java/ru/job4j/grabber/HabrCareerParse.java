@@ -7,6 +7,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class HabrCareerParse {
 
@@ -27,8 +28,31 @@ public class HabrCareerParse {
                 String vacancyName = titleElement.text();
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
                 String date = dateElement.attr("datetime");
-                System.out.printf("%s %s %s%n", date, vacancyName, link);
+                String description;
+                try {
+                    description = new HabrCareerParse().retrieveDescription(link);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.printf("%s %s %s %s%n", date, vacancyName, link, description);
+
             });
         }
     }
+
+    private String retrieveDescription(String link) throws IOException {
+        String description = "";
+        Connection connection = Jsoup.connect(link);
+        Document document = connection.get();
+        String title = document.select(".section-title__title").first().text();
+        description += title + "\n";
+        Elements rows = document.select(".vacancy-description__text");
+        for (Element row : rows) {
+            for (int i = 0; i < row.childNodeSize(); i++) {
+                description += row.child(i).text() + "\n";
+            }
+        }
+        return description;
+    }
 }
+
