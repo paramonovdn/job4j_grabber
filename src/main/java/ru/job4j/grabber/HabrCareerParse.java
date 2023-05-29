@@ -42,7 +42,6 @@ public class HabrCareerParse implements Parse {
         }
         return description.toString();
     }
-
     public List<Post> list(String link) throws IOException {
         List<Post> postList = new ArrayList<>();
         Connection connection = Jsoup.connect(link);
