@@ -108,20 +108,4 @@ public class PsqlStore implements Store {
             throw new IllegalStateException(e);
         }
     }
-
-    public static void main(String[] args) throws Exception {
-        PsqlStore psqlStore = new PsqlStore(getRabbitProperty());
-        Post post1 = new Post(0, "Java developer", "http://somelink1", "some description1", LocalDateTime.parse("2023-05-22T16:36:12"));
-        Post post2 = new Post(0, "QA- инженер", "http://somelink2", "some description2", LocalDateTime.parse("2023-05-21T17:26:13"));
-        Post post3 = new Post(0, "Project manager", "http://somelink33", "some description3", LocalDateTime.parse("2023-05-20T15:46:22"));
-        psqlStore.save(post1);
-        psqlStore.save(post2);
-        psqlStore.save(post3);
-
-        System.out.println(psqlStore.findById(1));
-        System.out.println("=============================");
-        System.out.println(psqlStore.getAll());
-        psqlStore.close();
-
-    }
 }

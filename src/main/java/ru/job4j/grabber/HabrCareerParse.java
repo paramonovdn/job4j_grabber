@@ -20,13 +20,6 @@ public class HabrCareerParse implements Parse {
       this.dateTimeParser = dateTimeParser;
     }
 
-    public static void main(String[] args) throws IOException {
-        DateTimeParser dateTimeParser = new HabrCareerDateTimeParser();
-        HabrCareerParse habrCareerParse = new HabrCareerParse(dateTimeParser);
-        for (int i = 1; i <= 5; i++) {
-            System.out.println(habrCareerParse.list(PAGE_LINK + i));
-        }
-    }
 
     private String retrieveDescription(String link) throws IOException {
         StringBuilder description = new StringBuilder();
