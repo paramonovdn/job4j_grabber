@@ -17,16 +17,11 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 public class Grabber implements Grab {
-    private Parse parse;
-    private Store store;
-    private Scheduler scheduler;
-    private int time;
     private static Properties cfg;
-
     private static final String PAGE_LINK = "https://career.habr.com/vacancies/java_developer?page=";
 
     @Override
-    public void init(HabrCareerParse habrCareerParse, Store store, Scheduler scheduler) throws SchedulerException {
+    public void init(Parse parse, Store store, Scheduler scheduler) throws SchedulerException {
         JobDataMap data = new JobDataMap();
         data.put("store", store);
         data.put("parse", parse);
