@@ -61,7 +61,7 @@ public class PsqlStore implements Store {
                     String link = selection.getString(4);
                     Timestamp timeStamp = selection.getTimestamp(5);
                     LocalDateTime created = timeStamp.toLocalDateTime();
-                    Post post = new Post(id, name, text, link, created);
+                    Post post = new Post(id, name, link, text, created);
                     postList.add(post);
                 }
             }
@@ -83,7 +83,7 @@ public class PsqlStore implements Store {
                     String link = selection.getString(4);
                     Timestamp timeStamp = selection.getTimestamp(5);
                     LocalDateTime created = timeStamp.toLocalDateTime();
-                    post = new Post(id, name, text, link, created);
+                    post = new Post(id, name, link, text, created);
                 }
             }
         } catch (SQLException e) {
