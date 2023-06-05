@@ -39,8 +39,8 @@ insert into person(id, name, company_id) values(11, 'Pyatkin Ilya', 5);
 
 ------------Ex1-----------------------------------------------------------------------------------------
 
-select name from person where company_id != 5;
-select p.name as Сотрудник, c.name as Компания from person as p join company as c on p.company_id = c.id;
+select p.name as Сотрудник, c.name as Компания from person as p join company as c on p.company_id = c.id where company_id != 5;
+
 --------------------------------------------------------------------------------------------------------
 
 
